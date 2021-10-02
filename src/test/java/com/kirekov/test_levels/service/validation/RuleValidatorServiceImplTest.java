@@ -17,15 +17,37 @@ class RuleValidatorServiceImplTest {
   @Test
   @DisplayName("Should return true if keys and values match")
   void shouldReturnTrueIfKeysAndValuesMatch() {
+    final var ruleType =
+        RuleTypeTestBuilder.builder()
+            .setKey("key")
+            .setValue("value")
+            .build();
     final var rule =
         RuleTestBuilder.builder()
             .setKey("key")
             .setValue("value")
             .build();
+
+    final var result = service.isRuleValid(rule, ruleType);
+
+    assertTrue(
+        result,
+        "Rule should be valid"
+    );
+  }
+
+  @Test
+  @DisplayName("Should return true if json contains the value")
+  void shouldReturnTrueIfJsonContainsTheValue() {
     final var ruleType =
         RuleTypeTestBuilder.builder()
             .setKey("key")
             .setValue("value")
+            .build();
+    final var rule =
+        RuleTestBuilder.builder()
+            .setKey("key")
+            .setValue("{\"key\": \"value\"}")
             .build();
 
     final var result = service.isRuleValid(rule, ruleType);

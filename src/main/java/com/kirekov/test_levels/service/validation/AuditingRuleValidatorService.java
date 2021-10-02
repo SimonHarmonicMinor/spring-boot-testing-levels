@@ -11,19 +11,19 @@ import org.springframework.stereotype.Service;
 public class AuditingRuleValidatorService implements RuleValidatorService {
 
   @ActualRuleValidatorServiceQualifier
-  private final RuleValidatorService ruleValidatorService;
+  private final RuleValidatorService origin;
   private final AuditService auditService;
 
   public AuditingRuleValidatorService(
-      RuleValidatorService ruleValidatorService,
+      RuleValidatorService origin,
       AuditService auditService) {
-    this.ruleValidatorService = ruleValidatorService;
+    this.origin = origin;
     this.auditService = auditService;
   }
 
   @Override
   public boolean isRuleValid(Rule rule, RuleType ruleType) {
-    final var res = ruleValidatorService.isRuleValid(rule, ruleType);
+    final var res = origin.isRuleValid(rule, ruleType);
     if (!res) {
       auditService.auditWrongRule(rule);
     }

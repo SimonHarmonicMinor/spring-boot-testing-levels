@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 @Service
+@ActualRuleValidatorServiceQualifier
 class RuleValidatorServiceImpl implements RuleValidatorService {
   private final ObjectMapper objectMapper;
 

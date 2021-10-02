@@ -1,5 +1,7 @@
 package com.kirekov.test_levels.service.validation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kirekov.test_levels.entity.Rule;
 import com.kirekov.test_levels.entity.RuleType;
@@ -22,9 +24,9 @@ class RuleValidatorServiceImpl implements
     final var keysMatch = doKeysMatch(rule, ruleType);
     final var valuesMatch = doValuesMatch(rule, ruleType);
     try {
-      final var map = objectMapper.convertValue(rule.getValue(), Map.class);
+      final Map<?, ?> map = objectMapper.readerFor(Map.class).readValue(rule.getValue());
       return keysMatch && mapContainsValue(map, ruleType);
-    } catch (IllegalArgumentException e) {
+    } catch (Exception e) {
       return keysMatch && valuesMatch;
     }
   }

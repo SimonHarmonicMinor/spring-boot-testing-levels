@@ -22,8 +22,8 @@ public class Aggregate {
   private Long id;
 
   @NotNull
-  @Column(name = "date_generated", nullable = false)
-  private OffsetDateTime dateGenerated;
+  @Column(nullable = false)
+  private OffsetDateTime date;
 
   @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "rule_id")
@@ -32,23 +32,23 @@ public class Aggregate {
   private Rule rule;
 
   @NotNull
-  @Column(nullable = false)
-  private int count;
+  @Column(name = "users_count", nullable = false)
+  private int usersCount;
 
   public Long getId() {
     return id;
   }
 
-  public OffsetDateTime getDateGenerated() {
-    return dateGenerated;
+  public OffsetDateTime getDate() {
+    return date;
   }
 
   public Rule getRule() {
     return rule;
   }
 
-  public int getCount() {
-    return count;
+  public int getUsersCount() {
+    return usersCount;
   }
 
   public Aggregate setId(Long id) {
@@ -56,8 +56,8 @@ public class Aggregate {
     return this;
   }
 
-  public Aggregate setDateGenerated(OffsetDateTime dateGenerated) {
-    this.dateGenerated = dateGenerated;
+  public Aggregate setDate(OffsetDateTime dateGenerated) {
+    this.date = dateGenerated;
     return this;
   }
 
@@ -66,8 +66,8 @@ public class Aggregate {
     return this;
   }
 
-  public Aggregate setCount(int count) {
-    this.count = count;
+  public Aggregate setUsersCount(int count) {
+    this.usersCount = count;
     return this;
   }
 }

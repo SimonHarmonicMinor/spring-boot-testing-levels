@@ -32,6 +32,11 @@ public class App {
     return name;
   }
 
+  public App setId(Long id) {
+    this.id = id;
+    return this;
+  }
+
   public App setName(String name) {
     this.name = name;
     return this;

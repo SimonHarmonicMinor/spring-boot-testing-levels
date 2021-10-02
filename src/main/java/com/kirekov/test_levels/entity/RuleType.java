@@ -49,6 +49,11 @@ public class RuleType {
     return value;
   }
 
+  public RuleType setId(Long id) {
+    this.id = id;
+    return this;
+  }
+
   public RuleType setName(String name) {
     this.name = name;
     return this;

@@ -67,6 +67,11 @@ public class Rule {
     return ruleType;
   }
 
+  public Rule setId(Long id) {
+    this.id = id;
+    return this;
+  }
+
   public Rule setName(String name) {
     this.name = name;
     return this;

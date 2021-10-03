@@ -26,9 +26,8 @@ public class Aggregate {
   private OffsetDateTime date;
 
   @ManyToOne(fetch = LAZY)
-  @JoinColumn(name = "rule_id")
+  @JoinColumn(name = "rule_id", nullable = false)
   @NotNull
-  @Column(nullable = false)
   private Rule rule;
 
   @NotNull

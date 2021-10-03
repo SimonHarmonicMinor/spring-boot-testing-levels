@@ -32,15 +32,13 @@ public class Rule {
   private String value;
 
   @ManyToOne(fetch = LAZY)
-  @JoinColumn(name = "app_id")
+  @JoinColumn(name = "app_id", nullable = false)
   @NotNull
-  @Column(nullable = false)
   private App app;
 
   @ManyToOne(fetch = LAZY)
-  @JoinColumn(name = "rule_type_id")
+  @JoinColumn(name = "rule_type_id", nullable = false)
   @NotNull
-  @Column(nullable = false)
   private RuleType ruleType;
 
   public Long getId() {

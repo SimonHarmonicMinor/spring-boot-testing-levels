@@ -42,6 +42,6 @@ class RuleServiceImpl implements RuleService {
     if (!ruleValidatorService.isRuleValid(rule, ruleType)) {
       throw new IllegalArgumentException("Not valid rule arguments");
     }
-    return ruleRepository.save(rule);
+    return ruleRepository.saveAndFlush(rule);
   }
 }

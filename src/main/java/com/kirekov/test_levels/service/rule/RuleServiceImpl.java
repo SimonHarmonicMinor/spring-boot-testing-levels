@@ -5,8 +5,10 @@ import com.kirekov.test_levels.repository.AppRepository;
 import com.kirekov.test_levels.repository.RuleRepository;
 import com.kirekov.test_levels.repository.RuleTypeRepository;
 import com.kirekov.test_levels.service.validation.RuleValidatorService;
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 class RuleServiceImpl implements RuleService {
@@ -43,5 +45,13 @@ class RuleServiceImpl implements RuleService {
       throw new IllegalArgumentException("Not valid rule arguments");
     }
     return ruleRepository.saveAndFlush(rule);
+  }
+
+  @Override
+  @Transactional
+  public List<Rule> createRules(List<RuleInfo> ruleInfos) {
+    return ruleInfos.stream()
+        .map(this::createRule)
+        .collect(Collectors.toList());
   }
 }

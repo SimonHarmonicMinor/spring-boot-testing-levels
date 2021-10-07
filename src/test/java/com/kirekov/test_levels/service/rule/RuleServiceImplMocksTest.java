@@ -1,14 +1,12 @@
 package com.kirekov.test_levels.service.rule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import com.kirekov.test_levels.entity.AppTestBuilder;
 import com.kirekov.test_levels.entity.Rule;
-import com.kirekov.test_levels.entity.RuleType;
 import com.kirekov.test_levels.entity.RuleTypeTestBuilder;
 import com.kirekov.test_levels.repository.AppRepository;
 import com.kirekov.test_levels.repository.RuleRepository;
@@ -54,7 +52,7 @@ class RuleServiceImplMocksTest {
     final var app = AppTestBuilder.builder().setId(1L).build();
     when(appRepository.findById(2L)).thenReturn(Optional.of(app));
     when(ruleValidatorService.isRuleValid(any(), any())).thenReturn(true);
-    when(ruleRepository.save(any())).thenAnswer(invocation -> {
+    when(ruleRepository.saveAndFlush(any())).thenAnswer(invocation -> {
       final Rule currRule = invocation.getArgument(0);
       return currRule.setId(1L);
     });

@@ -48,6 +48,7 @@ class RuleServiceImplH2Test {
   }
 
   @Test
+  @DisplayName("Should create multiple rules successfully")
   void shouldCreateMultipleRulesSuccessfully() {
     when(ruleValidatorService.isRuleValid(any(), any())).thenReturn(true);
     final var ruleType = ruleTypeRepository.saveAndFlush(RuleTypeTestBuilder.builder().build());
